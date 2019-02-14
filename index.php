@@ -13,7 +13,7 @@
 
 
 <div class="container">
-  <form action="action_page.php">
+   <form method="post" action="index.php">
     <div class="row">
       <div class="col-25">
         <label for="fname">Nombre</label>
