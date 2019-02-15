@@ -1,61 +1,39 @@
 <?php
-include_once('validaciones.php');
- ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/general.css">
+header('Content-Type: text/html; charset=utf-8');
 
-
-</head>
-<body>
-
-
-
-
-
-<div class="container">
-   <form method="post" action="index.php">
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Nombre</label>
-      </div>
-      <div class="col-75">
-        <input type="text" name="nombre" placeholder="Tu nombre..">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="lname">Apellido</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="lname" name="Apellido" placeholder="Tu apellido..">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="country">Pais</label>
-      </div>
-      <div class="col-75">
-        <select id="country" name="country">
-          <option value="australia">Argentina</option>
-          <option value="canada">Uruguay</option>
-          <option value="usa">Brasil</option>
-        </select>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="subject">Comentarios</label>
-      </div>
-      <div class="col-75">
-        <textarea id="subject" name="subject" placeholder="Escribe algo lindo.." style="height:200px"></textarea>
-      </div>
-    </div>
-    <div class="row">
-      <input type="submit" value="Submit">
-    </div>
-  </form>
-</div>
+require_once 'funciones/validaciones.php';
+//Guarda los valores de los campos en variables, siempre y cuando se haya enviado el formulario, sino se guardará null.
+$nombre = isset($_POST['nombre']) ? $_POST['nombre'] : null;
+$edad = isset($_POST['edad']) ? $_POST['edad'] : null;
+$email = isset($_POST['email']) ? $_POST['email'] : null;
+//Este array guardará los errores de validación que surjan.
+$errores = array();
+//Pregunta si está llegando una petición por POST, lo que significa que el usuario envió el formulario.
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+   //Valida que el campo nombre no esté vacío.
+   if (!validaRequerido($nombre)) {
+      $errores[] = 'El campo nombre es incorrecto.';
+   }
+   //Valida la edad con un rango de 3 a 130 años.
+   $opciones_edad = array(
+      'options' => array(
+         //Definimos el rango de edad entre 3 a 130.
+         'min_range' => 3,
+         'max_range' => 130
+      )
+   );
+   if (!validarEntero($edad, $opciones_edad)) {
+      $errores[] = 'El campo edad es incorrecto.';
+   }
+   //Valida que el campo email sea correcto.
+   if (!validaEmail($email)) {
+      $errores[] = 'El campo email es incorrecto.';
+   }
+   //Verifica si ha encontrado errores y de no haber redirige a la página con el mensaje de que pasó la validación.
+   if(!$errores){
+      header('Location: validado.php');
+      exit;
+   }
+}
+?>
