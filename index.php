@@ -1,3 +1,7 @@
+<?php
+include_once('validaciones.php');
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +23,7 @@
         <label for="fname">Nombre</label>
       </div>
       <div class="col-75">
-        <input type="text" id="fname" name="Nombre" placeholder="Tu nombre..">
+        <input type="text" name="nombre" placeholder="Tu nombre..">
       </div>
     </div>
     <div class="row">
@@ -27,7 +31,7 @@
         <label for="lname">Apellido</label>
       </div>
       <div class="col-75">
-        <input type="text" id="lname" name="Apellido" placeholder="tu apellido..">
+        <input type="text" id="lname" name="Apellido" placeholder="Tu apellido..">
       </div>
     </div>
     <div class="row">
