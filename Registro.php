@@ -3,11 +3,12 @@
 // SI VINO POR POST
 if ( $_POST ) {
   // VALIDAR
+$errores = validarRegistracion()
 
 if ( NO HAY ERRORES) {
   //registrar
 
-  //redirigir
+  header("location:home.php");exit;
 }
 }
  ?>
