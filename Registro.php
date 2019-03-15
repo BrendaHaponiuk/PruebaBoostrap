@@ -5,7 +5,7 @@ if ( $_POST ) {
   // VALIDAR
 $errores = validarRegistracion()
 
-if ( NO HAY ERRORES) {
+if ( !empty($errores) ) {
   //registrar
 
   header("location:home.php");exit;
