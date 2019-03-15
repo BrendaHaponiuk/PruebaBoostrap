@@ -1,3 +1,17 @@
+<?php
+
+// SI VINO POR POST
+if ( $_POST ) {
+  // VALIDAR
+
+if ( NO HAY ERRORES) {
+  //registrar
+
+  //redirigir
+}
+}
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +27,7 @@
 
 
 <div class="container">
-  <form action="validado.php" method="POST">
+  <form action="registro.php" method="POST" enctype="multipart/form-data">
     <div class="row">
       <div class="col-25">
         <label for="fname">Nombre</label>
